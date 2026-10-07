@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel & Alma — O universo dos jogos indie</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fbf7f0;--fg:#1d1b2e;--mut:#6a6780;--card:#fff;--line:#e6dfd2;--a:#ff5d73;--b:#6c5ce7;--c:#00b8a9;--d:#ffb703}
+:root[data-theme="dark"]{--bg:#12111c;--fg:#f3f0ff;--mut:#a6a2c0;--card:#1c1a2b;--line:#2d2a44}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12111c;--fg:#f3f0ff;--mut:#a6a2c0;--card:#1c1a2b;--line:#2d2a44}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Trebuchet MS",system-ui,sans-serif;line-height:1.6}
+h1,h2,h3,.logo{font-family:"Courier New",ui-monospace,monospace;letter-spacing:-.02em}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-weight:800;font-size:1.15rem}.logo span{color:var(--a)}
+nav a{color:var(--fg);text-decoration:none;margin-left:18px;font-size:.92rem}
+nav a:hover{color:var(--a)}
+button{font:inherit;cursor:pointer}
+#theme{background:none;border:2px solid var(--line);color:var(--fg);border-radius:8px;padding:2px 8px;margin-left:18px}
+.hero{padding:80px 0 70px;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;background:
+radial-gradient(circle at 20% 20%,color-mix(in srgb,var(--b) 28%,transparent),transparent 45%),
+radial-gradient(circle at 80% 30%,color-mix(in srgb,var(--a) 25%,transparent),transparent 45%),
+radial-gradient(circle at 50% 100%,color-mix(in srgb,var(--c) 22%,transparent),transparent 50%)}
+.hero .wrap{position:relative}
+.tag{display:inline-block;border:2px solid var(--fg);padding:3px 12px;border-radius:99px;font-size:.8rem;font-weight:700;margin-bottom:18px;background:var(--d);color:#1d1b2e}
+h1{font-size:clamp(2.3rem,7vw,4.6rem);line-height:1.05;margin:0 0 18px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;margin:0 auto 28px;color:var(--mut);font-size:1.12rem}
+.btn{display:inline-block;background:var(--a);color:#fff;border:2px solid var(--fg);border-radius:10px;padding:12px 24px;font-weight:700;text-decoration:none;box-shadow:4px 4px 0 var(--fg);transition:.15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--fg)}
+.btn.alt{background:var(--card);color:var(--fg);margin-left:10px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:-30px;position:relative}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+.stat b{display:block;font-family:"Courier New",monospace;font-size:1.9rem;color:var(--b)}
+.stat span{color:var(--mut);font-size:.88rem}
+section{padding:70px 0 0}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);margin:0 0 8px}
+.sub{color:var(--mut);margin:0 0 26px;max-width:640px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:24px}
+.chip{background:var(--card);border:2px solid var(--line);color:var(--fg);border-radius:99px;padding:6px 15px;font-size:.88rem}
+.chip.on{background:var(--b);border-color:var(--b);color:#fff}
+#q{flex:1;min-width:160px;border:2px solid var(--line);background:var(--card);color:var(--fg);border-radius:99px;padding:8px 16px;font:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.game{background:var(--card);border:2px solid var(--line);border-radius:16px;overflow:hidden;transition:.2s}
+.game:hover{transform:translateY(-4px);border-color:var(--fg)}
+.art{height:130px;display:grid;place-items:center;font-size:3.4rem}
+.body{padding:16px}
+.body h3{margin:0 0 2px;font-size:1.1rem}
+.meta{color:var(--mut);font-size:.8rem;margin-bottom:8px}
+.body p{margin:0;font-size:.92rem}
+.pill{display:inline-block;margin-top:10px;font-size:.72rem;font-weight:700;padding:2px 10px;border-radius:99px;background:color-mix(in srgb,var(--c) 22%,transparent);color:var(--fg)}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:30px}
+.pick{margin-top:26px;background:var(--card);border:2px dashed var(--b);border-radius:16px;padding:24px;text-align:center}
+.pick h3{margin:0 0 10px}
+#pickout{margin-top:14px;min-height:30px;font-size:1.05rem}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.why div{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:22px}
+.why i{font-style:normal;font-size:2rem}
+.why h3{margin:6px 0}
+.why p{margin:0;color:var(--mut);font-size:.94rem}
+.tl{border-left:3px solid var(--line);margin-left:8px;padding-left:24px}
+.tl div{position:relative;margin-bottom:22px}
+.tl div::before{content:"";position:absolute;left:-33px;top:6px;width:14px;height:14px;background:var(--a);border:3px solid var(--bg);border-radius:50%}
+.tl b{font-family:"Courier New",monospace;color:var(--a)}
+footer{margin-top:80px;border-top:2px solid var(--line);padding:30px 0;text-align:center;color:var(--mut);font-size:.9rem}
+@media (max-width:640px){nav a.h{display:none}.btn.alt{margin:12px 0 0}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><div class="logo">PIXEL<span>&</span>ALMA</div>
+<div><a class="h" href="#jogos">Jogos</a><a class="h" href="#porque">Por que indie?</a><a class="h" href="#historia">História</a><button id="theme" aria-label="Alternar tema">◐</button></div></div></nav>
+
+<header class="hero"><div class="wrap">
+<span class="tag">★ FEITO COM PAIXÃO, NÃO COM ORÇAMENTO</span>
+<h1>Onde os jogos têm <em>alma</em></h1>
+<p>Equipes minúsculas, ideias gigantes. Explore o universo dos jogos indie: aventuras ousadas, histórias que ficam na memória e criadores que provaram que criatividade vale mais que milhões.</p>
+<a class="btn" href="#jogos">Explorar jogos</a><a class="btn alt" href="#porque">Por que amamos indies</a>
+</div></header>
+
+<div class="wrap"><div class="stats">
+<div class="stat"><b>1–10</b><span>pessoas em muitos estúdios</span></div>
+<div class="stat"><b>∞</b><span>estilos e gêneros</span></div>
+<div class="stat"><b>100%</b><span>visão autoral</span></div>
+<div class="stat"><b>🇧🇷</b><span>cena brasileira em alta</span></div>
+</div></div>
+
+<section id="jogos"><div class="wrap">
+<h2>Joias para jogar</h2>
+<p class="sub">Uma seleção de títulos que marcaram a cena indie. Filtre por gênero ou busque pelo nome.</p>
+<div class="tools" id="chips"></div>
+<div class="grid" id="grid"></div>
+<div class="pick"><h3>🎲 Não sabe o que jogar?</h3><button class="btn" id="rnd">Sortear um jogo</button><div id="pickout"></div></div>
+</div></section>
+
+<section id="porque"><div class="wrap">
+<h2>Por que jogos indie importam</h2>
+<p class="sub">Sem amarras de grandes publicadoras, o risco criativo vira regra.</p>
+<div class="why">
+<div><i>🎨</i><h3>Identidade única</h3><p>Direção de arte e mecânicas que você não encontra em nenhum outro lugar.</p></div>
+<div><i>💬</i><h3>Histórias pessoais</h3><p>Temas como saúde mental, luto e identidade são tratados com sinceridade rara.</p></div>
+<div><i>🧪</i><h3>Experimentação</h3><p>Novos gêneros nascem aqui: roguelites, narrativas curtas, puzzles inesperados.</p></div>
+<div><i>🤝</i><h3>Comunidade</h3><p>Criadores conversam direto com jogadores, e isso muda o jogo durante o desenvolvimento.</p></div>
+</div></div></section>
+
+<section id="historia"><div class="wrap">
+<h2>Uma linha do tempo</h2>
+<p class="sub">Alguns marcos que ajudaram a consolidar a cena.</p>
+<div class="tl">
+<div><b>2008</b> — <i>Braid</i> chega ao Xbox 360 e mostra que um jogo autoral pode ser sucesso e arte.</div>
+<div><b>2012</b> — Documentário <i>Indie Game: The Movie</i> expõe os bastidores emocionais de quem cria sozinho.</div>
+<div><b>2015</b> — <i>Undertale</i> vira fenômeno cultural, feito basicamente por uma pessoa.</div>
+<div><b>2016</b> — <i>Stardew Valley</i> prova o poder de um projeto solo cheio de carinho.</div>
+<div><b>2018</b> — O brasileiro <i>Dandara</i> conquista público e crítica internacionais.</div>
+<div><b>Hoje</b> — Indies disputam prêmios, vendem milhões e inspiram novas gerações.</div>
+</div></div></section>
+
+<footer><div class="wrap">Feito com 💜 para quem acredita que jogos são arte. · Pixel & Alma</div></footer>
+
+<script>
+const G=[
+["Celeste","Plataforma","Maddy Makeup · 2018","Escalada desafiadora com uma história tocante sobre ansiedade e autoaceitação.","🏔️","linear-gradient(135deg,#6c5ce7,#ff5d73)"],
+["Hollow Knight","Metroidvania","Team Cherry · 2017","Um reino subterrâneo vasto, sombrio e lindamente desenhado à mão.","🦋","linear-gradient(135deg,#1d1b2e,#4a5a8a)"],
+["Stardew Valley","Simulação","ConcernedApe · 2016","Largue a cidade, cuide da fazenda e faça amigos. Um abraço em forma de jogo.","🌾","linear-gradient(135deg,#00b8a9,#ffd166)"],
+["Undertale","RPG","Toby Fox · 2015","Um RPG onde ninguém precisa morrer. Humor, música marcante e escolhas reais.","❤️","linear-gradient(135deg,#1d1b2e,#ff5d73)"],
+["Hades","Roguelike","Supergiant Games · 2020","Fuja do submundo grego em combates rápidos e uma narrativa que evolui a cada morte.","🔥","linear-gradient(135deg,#d00000,#ffb703)"],
+["Outer Wilds","Exploração","Mobius Digital · 2019","Um sistema solar preso em um ciclo de 22 minutos. Curiosidade é sua única arma.","🪐","linear-gradient(135deg,#0b132b,#f77f00)"],
+["Disco Elysium","RPG","ZA/UM · 2019","Um detetive sem memória e muitas vozes na cabeça. Diálogo como mecânica central.","🕵️","linear-gradient(135deg,#3a506b,#c9a227)"],
+["Dead Cells","Roguelike","Motion Twin · 2018","Ação frenética em castelo que muda a cada tentativa, com combate preciso.","⚔️","linear-gradient(135deg,#2b2d42,#00b8a9)"],
+["Cuphead","Ação","Studio MDHR · 2017","Chefões épicos com visual inspirado em desenhos animados dos anos 1930.","☕","linear-gradient(135deg,#ffb703,#ff5d73)"],
+["Papers, Please","Puzzle","Lucas Pope · 2013","Você é um inspetor de fronteira. Cada carimbo tem um peso moral.","📄","linear-gradient(135deg,#6a6780,#2b2d42)"],
+["Hotline Miami","Ação","Dennaton Games · 2012","Violência estilizada, trilha eletrônica hipnótica e ritmo viciante.","🎭","linear-gradient(135deg,#ff00a8,#6c5ce7)"],
+["Dandara","Metroidvania","Long Hat House · 2018","Orgulho brasileiro: heroína que salta pelas paredes em um mundo surreal.","🇧🇷","linear-gradient(135deg,#00b8a9,#6c5ce7)"]
+];
+let gen="Todos",q="";
+const grid=document.getElementById("grid"),chips=document.getElementById("chips");
+const gens=["Todos",...new Set(G.map(g=>g[1]))];
+chips.innerHTML=gens.map(x=>`<button class="chip${x=="Todos"?" on":""}" data-g="${x}">${x}</button>`).join("")+'<input id="q" placeholder="Buscar jogo…" aria-label="Buscar">';
+function render(){
+ const l=G.filter(g=>(gen=="Todos"||g[1]==gen)&&(g[0]+g[3]).toLowerCase().includes(q));
+ grid.innerHTML=l.length?l.map(g=>`<article class="game"><div class="art" style="background:${g[5]}">${g[4]}</div><div class="body"><h3>${g[0]}</h3><div class="meta">${g[2]}</div><p>${g[3]}</p><span class="pill">${g[1]}</span></div></article>`).join(""):'<div class="empty">Nenhum jogo encontrado 👾</div>';
+}
+chips.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;gen=b.dataset.g;chips.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c==b));render()});
+document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase();render()});
+document.getElementById("rnd").onclick=()=>{const g=G[Math.floor(Math.random()*G.length)];document.getElementById("pickout").innerHTML=`${g[4]} <b>${g[0]}</b> — ${g[1]}. ${g[3]}`};
+document.getElementById("theme").onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=dark?"light":"dark"};
+render();
+</script>
+</body>
+</html>
