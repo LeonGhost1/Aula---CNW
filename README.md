@@ -1,2 +1,0 @@
-# Aula---CNW
-Gay Furry
